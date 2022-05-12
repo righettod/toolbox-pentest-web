@@ -1,0 +1,8 @@
+# Docker Ubuntu 14 image with PHP 5.x environment
+FROM ubuntu:14.04
+RUN apt-get update -y
+RUN apt-get install -y curl git highlight nano openssl php5 php5-mcrypt php5-sqlite php5-xsl php5-json php-http-request2 phpunit software-properties-common zsh
+RUN php5enmod mcrypt
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+RUN echo "alias cat_colorized='highlight -O ansi --force'" >> /root/.zshrc
+ENTRYPOINT ["/bin/zsh"]
